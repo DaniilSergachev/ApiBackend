@@ -1,0 +1,86 @@
+spring:
+  datasource:
+    url: jdbc:mysql://localhost:5444/cloud_file_storage
+    username: user
+    password: user
+  jpa:
+    show-sql: true
+    generate-ddl: false
+    hibernate:
+      ddl-auto: update
+      dialect: org.hibernate.dialect.MySQLDialect
+      jdbc:
+        lob:
+          non_contextual_creation: true
+  servlet:
+    multipart:
+      max-file-size: 100MB
+      max-request-size: 100MB
+server:
+  tomcat:
+    max-swallow-size: -1
+
+jwt:
+  secret: 984hg493gh0439rthr0429uruj2309yh937gc763fe87t3f89723gf
+  lifetime: 50m
+
+minio:
+  endpoint: http://localhost:9000
+  accessKey: bebrabebra
+  secretKey: wolwerwolwer
+  bucketName: user-files
+
+
+
+
+#
+#  Future showBottomSheetForAddingData(BuildContext context) {
+#  return showModalBottomSheet(
+#context: context,
+#builder: (BuildContext ctx) {
+#  return Wrap(
+#  children: [
+#    Container(
+#    padding: EdgeInsets.all(16),
+#    child: Column(
+#      crossAxisAlignment: CrossAxisAlignment.start,
+#    children: [
+#      Divider(color: Colors.grey),
+#      createBasicListTile(text: "Create or upload file", icon: Icons.cloud_upload),
+#      createBasicListTile(text: "Create new folder", icon: Icons.folder).onTap(() async {
+#                                                                                          var folderName = await buildCreateFolderDialog(context);
+#                                                                                          if (folderName != null) {
+#        // ?????????? ?????? ?? ??????
+#        await createFolderOnServer(folderName, '');
+#        getCloudboxList.add(CSDataModel(fileName: folderName, fileUrl: CSFolderIcon, isFolder: true));
+#          finish(context);
+#      }
+#      }),
+#      Divider(color: Colors.grey),
+#    ],
+#    ),
+#    ),
+#  ],
+#  );
+#},
+#  );
+#}
+#
+#  Future<void> createFolderOnServer(String folderName, String path) async {
+#  final url = Uri.parse('http://localhost:8080/api/minio/create-folder');
+#  final response = await authenticatedRequest(
+#  url,
+#  'POST',
+#headers: {'Content-Type': 'application/json'},
+#body: jsonEncode({'name': folderName, 'path': path}),
+#  );
+#
+#  if (response.statusCode == 200) {
+#  print('Folder created successfully');
+#} else {
+#print('Failed to create folder: ${response.statusCode}');
+#}
+#}
+
+
+

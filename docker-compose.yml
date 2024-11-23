@@ -1,0 +1,38 @@
+services:
+  db:
+    image: mysql:8.0
+    container_name: db_mysql
+    environment:
+      MYSQL_DATABASE: cloud_file_storage
+      MYSQL_ROOT_PASSWORD: user
+      MYSQL_USER: user
+      MYSQL_PASSWORD: user
+    ports:
+      - "5444:3306"
+    volumes:
+      - mysql_data:/var/lib/mysql
+    networks:
+      - app-network
+
+  minio:
+    image: quay.io/minio/minio
+    container_name: minio
+    command: server /data --console-address ":9001"
+    environment:
+      MINIO_ROOT_USER: bebrabebra
+      MINIO_ROOT_PASSWORD: wolwerwolwer
+    ports:
+      - "9000:9000"
+      - "9001:9001"
+    volumes:
+      - minio_data:/data
+    networks:
+      - app-network
+
+
+volumes:
+  mysql_data:
+  minio_data:
+
+networks:
+  app-network:
